@@ -3,11 +3,8 @@ package com.springboot.tongyuyan.selfhelp.controller.order;
 import com.springboot.tongyuyan.selfhelp.service.order.OrderInfoService;
 import com.springboot.tongyuyan.selfhelp.tool.responestool.BasePageEx;
 import com.springboot.tongyuyan.selfhelp.tool.responestool.ResultDto;
-import com.springboot.tongyuyan.selfhelp.winter.mapper.goods.GoodsMapper;
-import com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods;
 import com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood;
 import com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo;
-import com.springboot.tongyuyan.selfhelp.winter.requstDto.order.OrderGoodsRequest;
 import com.springboot.tongyuyan.selfhelp.winter.requstDto.order.OrderInfoRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class OrderInfoController {
 
     @RequestMapping(value = "/add" ,produces = {"application/json;charset=UTF-8"})
     public ResultDto<Object> insertOrder(OrderInfo orderInfo, @RequestParam(value = "orderGoodList") String orderGoodList, HttpServletRequest request){
-        System.out.println("商户编号:"+request.getSession().getAttribute("shopCard"));
+        System.out.println("商户编号:"+request.getSession().getAttribute("shopId"));
         List<OrderGood> goodList=new LinkedList<>();
         try {
             JSONArray  myJsonArray = new JSONArray(orderGoodList);
