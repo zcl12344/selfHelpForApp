@@ -1,0 +1,83 @@
+server:
+  port: 8080
+  session:
+    timeout: 20000
+    store-dir: jdbc
+
+spring:
+    datasource:
+        name: test
+#        url: jdbc:mysql://116.62.119.53:3306/test?useUnicode=true&characterEncoding=utf-8
+#        username: test1
+#        password: Bx2014-yutongquanqiu
+        url: jdbc:mysql://127.0.0.1:3306/user?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+
+    mvc:
+      static-path-pattern: /static/**
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.springboot.tongyuyan.selfhelp.winter.model
+
+#pagehelper  ҳ
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+pay:
+  url:  "https://api.mch.weixin.qq.com/pay/unifiedorder"
+  random: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+  API_KEY: "3b891yqdda5ua1rakyzwf03y89jn0i3b"
+  MCH_ID: "1497612492"
+  APP_ID: "wx4e43bde9782480fb"
+
+apliy:
+  app_private_key: "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHhha/EEnVJEtB
+                    g0G9mCNdD9kzo91myEX7GdA1kUZdyrLCjB4qi3nLNi1G6Nc/4z8auJdRHPlje3tO
+                    WrRdi+5ASCT+uaWXtJ/i06bfSrDCKO9hJSiL/eXGgS8m2+6SzbXeQznJFAzP8gGM
+                    fI6gKkPlbzlEa/ueoK/OQ0j0gOYTT+ZwEgYbhc4APNL5idYvM3wM+c/Ib+1/ymqq
+                    XUlujleGAmk+lD7C8yhk76YGCMWLJ+Zj+LuFAj0X/iXWW1hy5Fz3QCz7RCP/u9X4
+                    8N7PXxeUy//ldr6dJ7NQNtQBfn6TEJXGdIiLdin0LqEm4GHjSP3cuGrobihrYPr5
+                    dTYQciS7AgMBAAECggEAdbnDgBbPSajxkoUs6/5xlz57rQGZ6ERxLjjL5l+CgmLQ
+                    WQQt5HKJeYLM8lL+dp7SJCUYe266I52/YrsYQz4GZP1sfrPxZfLYiBDUHFpIszdO
+                    DybKptc3lYmx1Z7dRNeF4NAPr3paGPQ1P7xat1xY1W5r/tgsDivHr895o3LOzkNC
+                    +GotT7kTOHYcibYpWUAB1Jsdgne+riLUS3s5R/qCJy4meJQrU+agIOCeio/MYWK9
+                    x4Th2afAPXhTggis7p2uDnjfJAYxoj6TcXsM9L76a8eLnqcqUWMOvWYkYdp5un3k
+                    zobEMfFHGG1ivAd3M8lf/hs+bpRW5pSYaO3MiNHXYQKBgQDmDoCiHXHFfqDs2cnn
+                    IFsm06itkaGxi5+jDuG04WQQxEsOr7YjUd9RRTNw1m/LNkupUmKKE05DZm1OUS2S
+                    wyRMxHYP46Q0uZec7ayZCREN9JsMLxEGUF13PzQRGhMGjlgoYokXtb/TutKJWYcH
+                    C3t7cSyVa2wEYfT9ygiS9MqvKwKBgQDeBiJWSFQw2niPUDZWWgXQUvo/icGTQZ8C
+                    YVcEmukGpClHK0Y7UxaAYbAtCP/Aanzs1e75tFGr3uJxl4QKm8JxL0Sa1QdukpkL
+                    6cIU562bZJUUzKSXz3+d00OdesFbSxBBuFguTYXsIRYpan5Y9g29sDk6oK4Ua4mx
+                    vlrkRikYsQKBgQDN9//8pKX+rp9/ToGwd0yEl412UGNWpO34u9Mh8YV4aXXVoUVN
+                    m/h3N6CVjrcqVeMppkPo4N36BBMqwg0uT54JSP92vFWAiwUNj9EudmqZdvz1zJHO
+                    eFcl8yU3hoOwI/MTvRyGaMdk1ee25ru4d/RHEY1b/YAI8Ha6XY6Nm7J3XwKBgCTv
+                    0lCWceM6xWnaR1/wVB1HYLinW1v7Q8/qj8aFWxUuxGtBqMp/1TOAjQXBBINnc+cW
+                    5E4IkLnON8/8DAyTwzJ/UaOMo1Li8rFHr3E45en/PsoaDZvv+mQwXIRbgsWEZGz6
+                    lTkGzqvtCTnUrLZyIPEY2zyEtNFS3rKCX66weW/RAoGAAQ8OOmnsPrE67TCGEaVL
+                    3qsKrKLmIHAvLjIdWXoI29vi/tw3BRUm9TOm29HpUTBCvKxyeCloKlaZcXDfJt4g
+                    QlvKBZtzenPyT2HbUlzHQCQxYzcp+GSMxvkK0QbAkGE/iHJQzyLUxkehbHrM9MY1
+                    3zNFeTv7QnbfkDYTJWW9lYs="
+  public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgjupHabg9a4epPXFNutO9jayET0l
+               A72OPThhccYImw7zanensbfrPrufGsNsE8qsh2+FjAs1Z0CXPQo6Itx8lZ9cY1dirf0Wzj9a/
+               chHoqdF1GtrPf1OhamnZlTmPvx/p4kBBt0eH6jiSCtzlW+GDYrHLYlpNH6dhi1EEEhdWIAmeBG
+               Fz8ZInNrq5UPkOTIEA58NbiRw2n9TrYDTEIC7WsOSmreA6Z08LgZdt1wbDA9S4pbwb7iElIh/VB
+               EmBCKMrjjj2+JDIc9niVx1THu5wcF+Fa/h0+EP7i2vgNdygOVbuO/iL27qvByi3IfpM0vMdRWyN
+               bO85ShhPtfpG8IENwIDAQAB"
+#静态资源
+
+
+# JWT 认证配置
+jwt:
+  header: Authorization
+  secret: w-oasis123456
+  expiration: 604800 #token七天不过期
+  tokenHead: "Bearer "
+  exceptUrl: "/auth/**"
+

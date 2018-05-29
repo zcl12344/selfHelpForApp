@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.oder.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="action_user_id" property="actionUserId" jdbcType="INTEGER" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="DECIMAL" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="pay_name" property="payName" jdbcType="VARCHAR" />
+    <result column="confirm_time" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="orderStatus" jdbcType="SMALLINT" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="refund_time" property="refundTime" jdbcType="TIMESTAMP" />
+    <result column="integrals" property="integrals" jdbcType="INTEGER" />
+    <result column="pay_userid" property="payUserid" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="delivery_id" property="deliveryId" jdbcType="INTEGER" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="is_merchant" property="isMerchant" jdbcType="BIT" />
+    <result column="is_online" property="isOnline" jdbcType="BIT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="postscript" property="postscript" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="shipping_status" property="shippingStatus" jdbcType="SMALLINT" />
+    <result column="zipcode" property="zipcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_phone, action_user_id, goods_amount, order_amount, discount, pay_name, confirm_time, 
+    pay_time, order_status, shop_id, refund_time, integrals, pay_userid, address, city, 
+    consignee, country, delivery_id, district, is_merchant, is_online, mobile, postscript, 
+    province, shipping_status, zipcode
+  </sql>
+  <select id="selectByOrderRequest" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where 1=1
+    <if test="dto.orderId != null and dto.orderId != ''">
+      AND  id = #{dto.orderId}
+    </if>
+    <if test="dto.userPhone != null and dto.userPhone != ''">
+      AND  user_phone = #{dto.userPhone}
+    </if>
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into order_info (id, user_phone, action_user_id, 
+      goods_amount, order_amount, discount, 
+      pay_name, confirm_time, pay_time, 
+      order_status, shop_id, refund_time, 
+      integrals, pay_userid, address, 
+      city, consignee, country, 
+      delivery_id, district, is_merchant, 
+      is_online, mobile, postscript, 
+      province, shipping_status, zipcode
+      )
+    values (#{id,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{actionUserId,jdbcType=INTEGER},
+      #{goodsAmount,jdbcType=DECIMAL}, #{orderAmount,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{payName,jdbcType=VARCHAR}, now(), #{payTime,jdbcType=TIMESTAMP},
+      #{orderStatus,jdbcType=SMALLINT}, #{shopId,jdbcType=INTEGER}, #{refundTime,jdbcType=TIMESTAMP}, 
+      #{integrals,jdbcType=INTEGER}, #{payUserid,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{deliveryId,jdbcType=INTEGER}, #{district,jdbcType=VARCHAR}, #{isMerchant,jdbcType=BIT}, 
+      #{isOnline,jdbcType=BIT}, #{mobile,jdbcType=VARCHAR}, #{postscript,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{shippingStatus,jdbcType=SMALLINT}, #{zipcode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="actionUserId != null" >
+        action_user_id,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="payName != null" >
+        pay_name,
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="integrals != null" >
+        integrals,
+      </if>
+      <if test="payUserid != null" >
+        pay_userid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="deliveryId != null" >
+        delivery_id,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="isMerchant != null" >
+        is_merchant,
+      </if>
+      <if test="isOnline != null" >
+        is_online,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="postscript != null" >
+        postscript,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="shippingStatus != null" >
+        shipping_status,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUserId != null" >
+        #{actionUserId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integrals != null" >
+        #{integrals,jdbcType=INTEGER},
+      </if>
+      <if test="payUserid != null" >
+        #{payUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryId != null" >
+        #{deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="isMerchant != null" >
+        #{isMerchant,jdbcType=BIT},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline,jdbcType=BIT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="postscript != null" >
+        #{postscript,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null" >
+        #{shippingStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo" >
+    update order_info
+    <set >
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUserId != null" >
+        action_user_id = #{actionUserId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="payName != null" >
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integrals != null" >
+        integrals = #{integrals,jdbcType=INTEGER},
+      </if>
+      <if test="payUserid != null" >
+        pay_userid = #{payUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryId != null" >
+        delivery_id = #{deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="isMerchant != null" >
+        is_merchant = #{isMerchant,jdbcType=BIT},
+      </if>
+      <if test="isOnline != null" >
+        is_online = #{isOnline,jdbcType=BIT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="postscript != null" >
+        postscript = #{postscript,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null" >
+        shipping_status = #{shippingStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="zipcode != null" >
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderInfo" >
+    update order_info
+    set user_phone = #{userPhone,jdbcType=VARCHAR},
+      action_user_id = #{actionUserId,jdbcType=INTEGER},
+      goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=SMALLINT},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      integrals = #{integrals,jdbcType=INTEGER},
+      pay_userid = #{payUserid,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      delivery_id = #{deliveryId,jdbcType=INTEGER},
+      district = #{district,jdbcType=VARCHAR},
+      is_merchant = #{isMerchant,jdbcType=BIT},
+      is_online = #{isOnline,jdbcType=BIT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      postscript = #{postscript,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      shipping_status = #{shippingStatus,jdbcType=SMALLINT},
+      zipcode = #{zipcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 分页面查询 -->
+  <select id="queryOrderInfoPageList" resultMap="BaseResultMap" parameterType="com.springboot.tongyuyan.selfhelp.winter.requstDto.order.OrderInfoRequest">
+    select
+    i.* ,s.shop_name as shopName,s.shop_img as shopImg
+    from order_info i left JOIN shopinfo s on i.shop_id=s.id
+    where 1=1
+    <if test="dto.userPhone != null and dto.userPhone != null">
+      AND i.user_phone = #{dto.userPhone}
+    </if>
+    <if test="dto.shopName != null and dto.shopName != null">
+      AND s.shop_name like "%"#{dto.shopName}"%"
+    </if>
+    <if test="dto.orderId != null and dto.orderId != null">
+      AND i.id = #{dto.orderId}
+    </if>
+    <if test="dto.shopId != null and dto.shopId != null">
+      AND s.id = #{dto.shopId}
+    </if>
+
+      ORDER BY confirm_time DESC
+  </select>
+  <update id="updateById" parameterType="java.lang.String" >
+    update order_info
+    set
+
+    <if test="orderStatus=1">
+      order_status = "1"
+      ,pay_name="微信支付"
+      ,pay_time=now()
+    </if>
+    <if test="orderStatus=0">
+      order_status = "0"
+      ,pay_name="支付失败"
+    </if>
+
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--手机号查询在哪家买过东西-->
+  <select id="queryShopIdByPhone"  resultType="java.lang.String" parameterType="java.lang.String">
+    SELECT DISTINCT shop_id from order_info where user_phone=#{userPhone}
+  </select>
+</mapper>

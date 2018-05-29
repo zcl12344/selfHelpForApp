@@ -1,0 +1,698 @@
+Index: src/main/resources/mapping/GoodsMapper.xml
+===================================================================
+--- src/main/resources/mapping/GoodsMapper.xml	(date 0)
++++ src/main/resources/mapping/GoodsMapper.xml	(date 0)
+@@ -1,692 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.goods.GoodsMapper">
+-  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.Goods">
+-    <id column="id" jdbcType="INTEGER" property="id" />
+-    <result column="good_sn" jdbcType="VARCHAR" property="goodSn" />
+-    <result column="good_number" jdbcType="SMALLINT" property="goodNumber" />
+-    <result column="is_scattered" jdbcType="BIT" property="isScattered" />
+-    <result column="good_weight" jdbcType="DECIMAL" property="goodWeight" />
+-    <result column="shop_price" jdbcType="DECIMAL" property="shopPrice" />
+-    <result column="is_on_sale" jdbcType="BIT" property="isOnSale" />
+-    <result column="is_promote" jdbcType="BIT" property="isPromote" />
+-    <result column="promote_price" jdbcType="DECIMAL" property="promotePrice" />
+-    <result column="promote_start_date" jdbcType="TIMESTAMP" property="promoteStartDate" />
+-    <result column="promote_end_date" jdbcType="TIMESTAMP" property="promoteEndDate" />
+-    <result column="warn_number" jdbcType="SMALLINT" property="warnNumber" />
+-    <result column="good_brief" jdbcType="VARCHAR" property="goodBrief" />
+-    <result column="good_img" jdbcType="VARCHAR" property="goodImg" />
+-    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+-    <result column="sort_order" jdbcType="SMALLINT" property="sortOrder" />
+-    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+-    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+-    <result column="give_integral" jdbcType="INTEGER" property="giveIntegral" />
+-    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+-    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+-    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+-    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+-    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+-    <result column="is_returnable" jdbcType="BIT" property="isReturnable" />
+-    <result column="is_online" jdbcType="BIT" property="isOnline" />
+-  </resultMap>
+-  <sql id="Base_Column_List">
+-    id, good_sn, good_number, is_scattered, good_weight, shop_price, is_on_sale, is_promote, 
+-    promote_price, promote_start_date, promote_end_date, warn_number, good_brief, good_img, 
+-    is_delete, sort_order, add_time, last_update, give_integral, category_id, shop_id, 
+-    supplier_id, good_name, purchase_price, is_returnable, is_online
+-  </sql>
+-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+-    select 
+-    <include refid="Base_Column_List" />
+-    from goods
+-    where id = #{id,jdbcType=INTEGER}
+-  </select>
+-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+-    delete from goods
+-    where id = #{id,jdbcType=INTEGER}
+-  </delete>
+-  <insert id="insert"    parameterType="com.springboot.tongyuyan.selfhelp.winter.model.Goods" databaseId="">
+-    insert into goods (id, good_sn, good_number, 
+-      is_scattered, good_weight, shop_price, 
+-      is_on_sale, is_promote, promote_price, 
+-      promote_start_date, promote_end_date, warn_number, 
+-      good_brief, good_img, is_delete, 
+-      sort_order, add_time, last_update, 
+-      give_integral, category_id, shop_id, 
+-      supplier_id, good_name, purchase_price, 
+-      is_returnable, is_online)
+-    values (#{id,jdbcType=INTEGER}, #{goodSn,jdbcType=VARCHAR}, #{goodNumber,jdbcType=SMALLINT}, 
+-      #{isScattered,jdbcType=BIT}, #{goodWeight,jdbcType=DECIMAL}, #{shopPrice,jdbcType=DECIMAL}, 
+-      #{isOnSale,jdbcType=BIT}, #{isPromote,jdbcType=BIT}, #{promotePrice,jdbcType=DECIMAL}, 
+-      #{promoteStartDate,jdbcType=TIMESTAMP}, #{promoteEndDate,jdbcType=TIMESTAMP}, #{warnNumber,jdbcType=SMALLINT}, 
+-      #{goodBrief,jdbcType=VARCHAR}, #{goodImg,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
+-      #{sortOrder,jdbcType=SMALLINT}, #{addTime,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, 
+-      #{giveIntegral,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+-      #{supplierId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DECIMAL}, 
+-      #{isReturnable,jdbcType=BIT}, #{isOnline,jdbcType=BIT})
+-  </insert>
+-  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.Goods">
+-    insert into goods
+-    <trim prefix="(" suffix=")" suffixOverrides=",">
+-      <if test="id != null">
+-        id,
+-      </if>
+-      <if test="goodSn != null">
+-        good_sn,
+-      </if>
+-      <if test="goodNumber != null">
+-        good_number,
+-      </if>
+-      <if test="isScattered != null">
+-        is_scattered,
+-      </if>
+-      <if test="goodWeight != null">
+-        good_weight,
+-      </if>
+-      <if test="shopPrice != null">
+-        shop_price,
+-      </if>
+-      <if test="isOnSale != null">
+-        is_on_sale,
+-      </if>
+-      <if test="isPromote != null">
+-        is_promote,
+-      </if>
+-      <if test="promotePrice != null">
+-        promote_price,
+-      </if>
+-      <if test="promoteStartDate != null">
+-        promote_start_date,
+-      </if>
+-      <if test="promoteEndDate != null">
+-        promote_end_date,
+-      </if>
+-      <if test="warnNumber != null">
+-        warn_number,
+-      </if>
+-      <if test="goodBrief != null">
+-        good_brief,
+-      </if>
+-      <if test="goodImg != null">
+-        good_img,
+-      </if>
+-      <if test="isDelete != null">
+-        is_delete,
+-      </if>
+-      <if test="sortOrder != null">
+-        sort_order,
+-      </if>
+-      <if test="addTime != null">
+-        add_time,
+-      </if>
+-      <if test="lastUpdate != null">
+-        last_update,
+-      </if>
+-      <if test="giveIntegral != null">
+-        give_integral,
+-      </if>
+-      <if test="categoryId != null">
+-        category_id,
+-      </if>
+-      <if test="shopId != null">
+-        shop_id,
+-      </if>
+-      <if test="supplierId != null">
+-        supplier_id,
+-      </if>
+-      <if test="goodName != null">
+-        good_name,
+-      </if>
+-      <if test="purchasePrice != null">
+-        purchase_price,
+-      </if>
+-      <if test="isReturnable != null">
+-        is_returnable,
+-      </if>
+-      <if test="isOnline != null">
+-        is_online,
+-      </if>
+-    </trim>
+-    <trim prefix="values (" suffix=")" suffixOverrides=",">
+-      <if test="id != null">
+-        #{id,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodSn != null">
+-        #{goodSn,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodNumber != null">
+-        #{goodNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="isScattered != null">
+-        #{isScattered,jdbcType=BIT},
+-      </if>
+-      <if test="goodWeight != null">
+-        #{goodWeight,jdbcType=DECIMAL},
+-      </if>
+-      <if test="shopPrice != null">
+-        #{shopPrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isOnSale != null">
+-        #{isOnSale,jdbcType=BIT},
+-      </if>
+-      <if test="isPromote != null">
+-        #{isPromote,jdbcType=BIT},
+-      </if>
+-      <if test="promotePrice != null">
+-        #{promotePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="promoteStartDate != null">
+-        #{promoteStartDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="promoteEndDate != null">
+-        #{promoteEndDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="warnNumber != null">
+-        #{warnNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="goodBrief != null">
+-        #{goodBrief,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodImg != null">
+-        #{goodImg,jdbcType=VARCHAR},
+-      </if>
+-      <if test="isDelete != null">
+-        #{isDelete,jdbcType=BIT},
+-      </if>
+-      <if test="sortOrder != null">
+-        #{sortOrder,jdbcType=SMALLINT},
+-      </if>
+-      <if test="addTime != null">
+-        #{addTime,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="lastUpdate != null">
+-        #{lastUpdate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="giveIntegral != null">
+-        #{giveIntegral,jdbcType=INTEGER},
+-      </if>
+-      <if test="categoryId != null">
+-        #{categoryId,jdbcType=INTEGER},
+-      </if>
+-      <if test="shopId != null">
+-        #{shopId,jdbcType=INTEGER},
+-      </if>
+-      <if test="supplierId != null">
+-        #{supplierId,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodName != null">
+-        #{goodName,jdbcType=VARCHAR},
+-      </if>
+-      <if test="purchasePrice != null">
+-        #{purchasePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isReturnable != null">
+-        #{isReturnable,jdbcType=BIT},
+-      </if>
+-      <if test="isOnline != null">
+-        #{isOnline,jdbcType=BIT},
+-      </if>
+-    </trim>
+-  </insert>
+-  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.Goods">
+-    update goods
+-    <set>
+-      <if test="goodSn != null">
+-        good_sn = #{goodSn,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodNumber != null">
+-        good_number = #{goodNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="isScattered != null">
+-        is_scattered = #{isScattered,jdbcType=BIT},
+-      </if>
+-      <if test="goodWeight != null">
+-        good_weight = #{goodWeight,jdbcType=DECIMAL},
+-      </if>
+-      <if test="shopPrice != null">
+-        shop_price = #{shopPrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isOnSale != null">
+-        is_on_sale = #{isOnSale,jdbcType=BIT},
+-      </if>
+-      <if test="isPromote != null">
+-        is_promote = #{isPromote,jdbcType=BIT},
+-      </if>
+-      <if test="promotePrice != null">
+-        promote_price = #{promotePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="promoteStartDate != null">
+-        promote_start_date = #{promoteStartDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="promoteEndDate != null">
+-        promote_end_date = #{promoteEndDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="warnNumber != null">
+-        warn_number = #{warnNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="goodBrief != null">
+-        good_brief = #{goodBrief,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodImg != null">
+-        good_img = #{goodImg,jdbcType=VARCHAR},
+-      </if>
+-      <if test="isDelete != null">
+-        is_delete = #{isDelete,jdbcType=BIT},
+-      </if>
+-      <if test="sortOrder != null">
+-        sort_order = #{sortOrder,jdbcType=SMALLINT},
+-      </if>
+-      <if test="addTime != null">
+-        add_time = #{addTime,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="lastUpdate != null">
+-        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="giveIntegral != null">
+-        give_integral = #{giveIntegral,jdbcType=INTEGER},
+-      </if>
+-      <if test="categoryId != null">
+-        category_id = #{categoryId,jdbcType=INTEGER},
+-      </if>
+-      <if test="shopId != null">
+-        shop_id = #{shopId,jdbcType=INTEGER},
+-      </if>
+-      <if test="supplierId != null">
+-        supplier_id = #{supplierId,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodName != null">
+-        good_name = #{goodName,jdbcType=VARCHAR},
+-      </if>
+-      <if test="purchasePrice != null">
+-        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isReturnable != null">
+-        is_returnable = #{isReturnable,jdbcType=BIT},
+-      </if>
+-      <if test="isOnline != null">
+-        is_online = #{isOnline,jdbcType=BIT},
+-      </if>
+-    </set>
+-    where id = #{id,jdbcType=INTEGER}
+-  </update>
+-  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.Goods">
+-    update goods
+-    set good_sn = #{goodSn,jdbcType=VARCHAR},
+-      good_number = #{goodNumber,jdbcType=SMALLINT},
+-      is_scattered = #{isScattered,jdbcType=BIT},
+-      good_weight = #{goodWeight,jdbcType=DECIMAL},
+-      shop_price = #{shopPrice,jdbcType=DECIMAL},
+-      is_on_sale = #{isOnSale,jdbcType=BIT},
+-      is_promote = #{isPromote,jdbcType=BIT},
+-      promote_price = #{promotePrice,jdbcType=DECIMAL},
+-      promote_start_date = #{promoteStartDate,jdbcType=TIMESTAMP},
+-      promote_end_date = #{promoteEndDate,jdbcType=TIMESTAMP},
+-      warn_number = #{warnNumber,jdbcType=SMALLINT},
+-      good_brief = #{goodBrief,jdbcType=VARCHAR},
+-      good_img = #{goodImg,jdbcType=VARCHAR},
+-      is_delete = #{isDelete,jdbcType=BIT},
+-      sort_order = #{sortOrder,jdbcType=SMALLINT},
+-      add_time = #{addTime,jdbcType=TIMESTAMP},
+-      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+-      give_integral = #{giveIntegral,jdbcType=INTEGER},
+-      category_id = #{categoryId,jdbcType=INTEGER},
+-      shop_id = #{shopId,jdbcType=INTEGER},
+-      supplier_id = #{supplierId,jdbcType=INTEGER},
+-      good_name = #{goodName,jdbcType=VARCHAR},
+-      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+-      is_returnable = #{isReturnable,jdbcType=BIT},
+-      is_online = #{isOnline,jdbcType=BIT}
+-    where id = #{id,jdbcType=INTEGER}
+-  </update>
+-  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods">
+-    <id column="id" jdbcType="INTEGER" property="id" />
+-    <result column="good_sn" jdbcType="VARCHAR" property="goodSn" />
+-    <result column="good_number" jdbcType="SMALLINT" property="goodNumber" />
+-    <result column="is_scattered" jdbcType="BIT" property="isScattered" />
+-    <result column="good_weight" jdbcType="DECIMAL" property="goodWeight" />
+-    <result column="shop_price" jdbcType="DECIMAL" property="shopPrice" />
+-    <result column="is_on_sale" jdbcType="BIT" property="isOnSale" />
+-    <result column="is_promote" jdbcType="BIT" property="isPromote" />
+-    <result column="promote_price" jdbcType="DECIMAL" property="promotePrice" />
+-    <result column="promote_start_date" jdbcType="TIMESTAMP" property="promoteStartDate" />
+-    <result column="promote_end_date" jdbcType="TIMESTAMP" property="promoteEndDate" />
+-    <result column="warn_number" jdbcType="SMALLINT" property="warnNumber" />
+-    <result column="good_brief" jdbcType="VARCHAR" property="goodBrief" />
+-    <result column="good_img" jdbcType="VARCHAR" property="goodImg" />
+-    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+-    <result column="sort_order" jdbcType="SMALLINT" property="sortOrder" />
+-    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+-    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+-    <result column="give_integral" jdbcType="INTEGER" property="giveIntegral" />
+-    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+-    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+-    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+-    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+-    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+-    <result column="is_returnable" jdbcType="BIT" property="isReturnable" />
+-    <result column="is_online" jdbcType="BIT" property="isOnline" />
+-  </resultMap>
+-  <sql id="Base_Column_List">
+-    id, good_sn, good_number, is_scattered, good_weight, shop_price, is_on_sale, is_promote, 
+-    promote_price, promote_start_date, promote_end_date, warn_number, good_brief, good_img, 
+-    is_delete, sort_order, add_time, last_update, give_integral, category_id, shop_id, 
+-    supplier_id, good_name, purchase_price, is_returnable, is_online
+-  </sql>
+-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+-    select 
+-    <include refid="Base_Column_List" />
+-    from goods
+-    where id = #{id,jdbcType=INTEGER}
+-  </select>
+-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+-    delete from goods
+-    where id = #{id,jdbcType=INTEGER}
+-  </delete>
+-  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods">
+-    insert into goods (id, good_sn, good_number, 
+-      is_scattered, good_weight, shop_price, 
+-      is_on_sale, is_promote, promote_price, 
+-      promote_start_date, promote_end_date, warn_number, 
+-      good_brief, good_img, is_delete, 
+-      sort_order, add_time, last_update, 
+-      give_integral, category_id, shop_id, 
+-      supplier_id, good_name, purchase_price, 
+-      is_returnable, is_online)
+-    values (#{id,jdbcType=INTEGER}, #{goodSn,jdbcType=VARCHAR}, #{goodNumber,jdbcType=SMALLINT}, 
+-      #{isScattered,jdbcType=BIT}, #{goodWeight,jdbcType=DECIMAL}, #{shopPrice,jdbcType=DECIMAL}, 
+-      #{isOnSale,jdbcType=BIT}, #{isPromote,jdbcType=BIT}, #{promotePrice,jdbcType=DECIMAL}, 
+-      #{promoteStartDate,jdbcType=TIMESTAMP}, #{promoteEndDate,jdbcType=TIMESTAMP}, #{warnNumber,jdbcType=SMALLINT}, 
+-      #{goodBrief,jdbcType=VARCHAR}, #{goodImg,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT}, 
+-      #{sortOrder,jdbcType=SMALLINT}, #{addTime,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, 
+-      #{giveIntegral,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+-      #{supplierId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DECIMAL}, 
+-      #{isReturnable,jdbcType=BIT}, #{isOnline,jdbcType=BIT})
+-  </insert>
+-  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods">
+-    insert into goods
+-    <trim prefix="(" suffix=")" suffixOverrides=",">
+-      <if test="id != null">
+-        id,
+-      </if>
+-      <if test="goodSn != null">
+-        good_sn,
+-      </if>
+-      <if test="goodNumber != null">
+-        good_number,
+-      </if>
+-      <if test="isScattered != null">
+-        is_scattered,
+-      </if>
+-      <if test="goodWeight != null">
+-        good_weight,
+-      </if>
+-      <if test="shopPrice != null">
+-        shop_price,
+-      </if>
+-      <if test="isOnSale != null">
+-        is_on_sale,
+-      </if>
+-      <if test="isPromote != null">
+-        is_promote,
+-      </if>
+-      <if test="promotePrice != null">
+-        promote_price,
+-      </if>
+-      <if test="promoteStartDate != null">
+-        promote_start_date,
+-      </if>
+-      <if test="promoteEndDate != null">
+-        promote_end_date,
+-      </if>
+-      <if test="warnNumber != null">
+-        warn_number,
+-      </if>
+-      <if test="goodBrief != null">
+-        good_brief,
+-      </if>
+-      <if test="goodImg != null">
+-        good_img,
+-      </if>
+-      <if test="isDelete != null">
+-        is_delete,
+-      </if>
+-      <if test="sortOrder != null">
+-        sort_order,
+-      </if>
+-      <if test="addTime != null">
+-        add_time,
+-      </if>
+-      <if test="lastUpdate != null">
+-        last_update,
+-      </if>
+-      <if test="giveIntegral != null">
+-        give_integral,
+-      </if>
+-      <if test="categoryId != null">
+-        category_id,
+-      </if>
+-      <if test="shopId != null">
+-        shop_id,
+-      </if>
+-      <if test="supplierId != null">
+-        supplier_id,
+-      </if>
+-      <if test="goodName != null">
+-        good_name,
+-      </if>
+-      <if test="purchasePrice != null">
+-        purchase_price,
+-      </if>
+-      <if test="isReturnable != null">
+-        is_returnable,
+-      </if>
+-      <if test="isOnline != null">
+-        is_online,
+-      </if>
+-    </trim>
+-    <trim prefix="values (" suffix=")" suffixOverrides=",">
+-      <if test="id != null">
+-        #{id,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodSn != null">
+-        #{goodSn,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodNumber != null">
+-        #{goodNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="isScattered != null">
+-        #{isScattered,jdbcType=BIT},
+-      </if>
+-      <if test="goodWeight != null">
+-        #{goodWeight,jdbcType=DECIMAL},
+-      </if>
+-      <if test="shopPrice != null">
+-        #{shopPrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isOnSale != null">
+-        #{isOnSale,jdbcType=BIT},
+-      </if>
+-      <if test="isPromote != null">
+-        #{isPromote,jdbcType=BIT},
+-      </if>
+-      <if test="promotePrice != null">
+-        #{promotePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="promoteStartDate != null">
+-        #{promoteStartDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="promoteEndDate != null">
+-        #{promoteEndDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="warnNumber != null">
+-        #{warnNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="goodBrief != null">
+-        #{goodBrief,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodImg != null">
+-        #{goodImg,jdbcType=VARCHAR},
+-      </if>
+-      <if test="isDelete != null">
+-        #{isDelete,jdbcType=BIT},
+-      </if>
+-      <if test="sortOrder != null">
+-        #{sortOrder,jdbcType=SMALLINT},
+-      </if>
+-      <if test="addTime != null">
+-        #{addTime,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="lastUpdate != null">
+-        #{lastUpdate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="giveIntegral != null">
+-        #{giveIntegral,jdbcType=INTEGER},
+-      </if>
+-      <if test="categoryId != null">
+-        #{categoryId,jdbcType=INTEGER},
+-      </if>
+-      <if test="shopId != null">
+-        #{shopId,jdbcType=INTEGER},
+-      </if>
+-      <if test="supplierId != null">
+-        #{supplierId,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodName != null">
+-        #{goodName,jdbcType=VARCHAR},
+-      </if>
+-      <if test="purchasePrice != null">
+-        #{purchasePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isReturnable != null">
+-        #{isReturnable,jdbcType=BIT},
+-      </if>
+-      <if test="isOnline != null">
+-        #{isOnline,jdbcType=BIT},
+-      </if>
+-    </trim>
+-  </insert>
+-  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods">
+-    update goods
+-    <set>
+-      <if test="goodSn != null">
+-        good_sn = #{goodSn,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodNumber != null">
+-        good_number = #{goodNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="isScattered != null">
+-        is_scattered = #{isScattered,jdbcType=BIT},
+-      </if>
+-      <if test="goodWeight != null">
+-        good_weight = #{goodWeight,jdbcType=DECIMAL},
+-      </if>
+-      <if test="shopPrice != null">
+-        shop_price = #{shopPrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isOnSale != null">
+-        is_on_sale = #{isOnSale,jdbcType=BIT},
+-      </if>
+-      <if test="isPromote != null">
+-        is_promote = #{isPromote,jdbcType=BIT},
+-      </if>
+-      <if test="promotePrice != null">
+-        promote_price = #{promotePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="promoteStartDate != null">
+-        promote_start_date = #{promoteStartDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="promoteEndDate != null">
+-        promote_end_date = #{promoteEndDate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="warnNumber != null">
+-        warn_number = #{warnNumber,jdbcType=SMALLINT},
+-      </if>
+-      <if test="goodBrief != null">
+-        good_brief = #{goodBrief,jdbcType=VARCHAR},
+-      </if>
+-      <if test="goodImg != null">
+-        good_img = #{goodImg,jdbcType=VARCHAR},
+-      </if>
+-      <if test="isDelete != null">
+-        is_delete = #{isDelete,jdbcType=BIT},
+-      </if>
+-      <if test="sortOrder != null">
+-        sort_order = #{sortOrder,jdbcType=SMALLINT},
+-      </if>
+-      <if test="addTime != null">
+-        add_time = #{addTime,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="lastUpdate != null">
+-        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+-      </if>
+-      <if test="giveIntegral != null">
+-        give_integral = #{giveIntegral,jdbcType=INTEGER},
+-      </if>
+-      <if test="categoryId != null">
+-        category_id = #{categoryId,jdbcType=INTEGER},
+-      </if>
+-      <if test="shopId != null">
+-        shop_id = #{shopId,jdbcType=INTEGER},
+-      </if>
+-      <if test="supplierId != null">
+-        supplier_id = #{supplierId,jdbcType=INTEGER},
+-      </if>
+-      <if test="goodName != null">
+-        good_name = #{goodName,jdbcType=VARCHAR},
+-      </if>
+-      <if test="purchasePrice != null">
+-        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+-      </if>
+-      <if test="isReturnable != null">
+-        is_returnable = #{isReturnable,jdbcType=BIT},
+-      </if>
+-      <if test="isOnline != null">
+-        is_online = #{isOnline,jdbcType=BIT},
+-      </if>
+-    </set>
+-    where id = #{id,jdbcType=INTEGER}
+-  </update>
+-  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.goods.Goods">
+-    update goods
+-    set good_sn = #{goodSn,jdbcType=VARCHAR},
+-      good_number = #{goodNumber,jdbcType=SMALLINT},
+-      is_scattered = #{isScattered,jdbcType=BIT},
+-      good_weight = #{goodWeight,jdbcType=DECIMAL},
+-      shop_price = #{shopPrice,jdbcType=DECIMAL},
+-      is_on_sale = #{isOnSale,jdbcType=BIT},
+-      is_promote = #{isPromote,jdbcType=BIT},
+-      promote_price = #{promotePrice,jdbcType=DECIMAL},
+-      promote_start_date = #{promoteStartDate,jdbcType=TIMESTAMP},
+-      promote_end_date = #{promoteEndDate,jdbcType=TIMESTAMP},
+-      warn_number = #{warnNumber,jdbcType=SMALLINT},
+-      good_brief = #{goodBrief,jdbcType=VARCHAR},
+-      good_img = #{goodImg,jdbcType=VARCHAR},
+-      is_delete = #{isDelete,jdbcType=BIT},
+-      sort_order = #{sortOrder,jdbcType=SMALLINT},
+-      add_time = #{addTime,jdbcType=TIMESTAMP},
+-      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+-      give_integral = #{giveIntegral,jdbcType=INTEGER},
+-      category_id = #{categoryId,jdbcType=INTEGER},
+-      shop_id = #{shopId,jdbcType=INTEGER},
+-      supplier_id = #{supplierId,jdbcType=INTEGER},
+-      good_name = #{goodName,jdbcType=VARCHAR},
+-      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+-      is_returnable = #{isReturnable,jdbcType=BIT},
+-      is_online = #{isOnline,jdbcType=BIT}
+-    where id = #{id,jdbcType=INTEGER}
+-  </update>
+-
+-
+-  <select id="queryGoodsList" parameterType="com.springboot.tongyuyan.selfhelp.winter.requstDto.shop.ShopInfoRequest" resultMap="BaseResultMap">
+-    select
+-    <include refid="Base_Column_List" />
+-    from shopinfo
+-    where 1=1
+-    <if test="dto.idCard != null and dto.idCard != null">
+-      AND id_card = #{dto.idCard}
+-    </if>
+-
+-
+-
+-  </select>
+-</mapper>
+\ No newline at end of file

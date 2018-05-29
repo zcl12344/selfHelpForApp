@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.user.UserTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_token" property="userToken" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="token_disabled_time" property="tokenDisabledTime" jdbcType="VARCHAR" />
+    <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
+    <result column="app_openid" property="appOpenId" jdbcType="VARCHAR" />
+    <result column="user_img" property="userImg" jdbcType="VARCHAR" />
+    <result column="user_app_sn" property="userAppSn" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_token, user_phone, token_disabled_time, user_nick, user_img,app_openid,user_app_sn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectByToken" resultMap="BaseResultMap" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    select
+    <include refid="Base_Column_List" />
+    from app_user
+    where user_token = #{token,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from app_user
+    where user_phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from app_user
+    where 1=1
+    <if test="dto.appOpenId == null and dto.appOpenId != null">
+      AND app_openid = #{dto.appOpenId}
+    </if>
+    user_phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    insert into app_user (id, user_token, user_phone,
+      token_disabled_time, user_nick, user_img, app_openid,user_app_sn
+      )
+    values (#{id,jdbcType=INTEGER}, #{userToken,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+      #{tokenDisabledTime,jdbcType=VARCHAR}, #{userNick,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR}
+      , #{appOpenId,jdbcType=VARCHAR}, #{userAppSn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    insert into app_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userToken != null" >
+        user_token,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="tokenDisabledTime != null" >
+        token_disabled_time,
+      </if>
+      <if test="userNick != null" >
+        user_nick,
+      </if>
+      <if test="userImg != null" >
+        user_img,
+      </if>
+      <if test="appOpenId != null" >
+        app_openid,
+      </if>
+      <if test="userAppSn != null" >
+        user_app_sn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userToken != null" >
+        #{userToken,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenDisabledTime != null" >
+        #{tokenDisabledTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userNick != null" >
+        #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="appOpenId != null" >
+        #{appOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAppSn != null" >
+        #{userAppSn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    update app_user
+    <set >
+      <if test="userToken != null" >
+        user_token = #{userToken,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenDisabledTime != null" >
+        token_disabled_time = #{tokenDisabledTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userNick != null" >
+        user_nick = #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        user_img = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="appOpenId != null" >
+        app_openid = #{appOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAppSn != null" >
+        user_app_sn = #{userAppSn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.UserToken" >
+    update app_user
+    set user_token = #{userToken,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      token_disabled_time = #{tokenDisabledTime,jdbcType=VARCHAR},
+      user_nick = #{userNick,jdbcType=VARCHAR},
+      user_img = #{userImg,jdbcType=VARCHAR},
+      app_openid = #{appOpenId,jdbcType=VARCHAR},
+      user_app_sn = #{userAppSn,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

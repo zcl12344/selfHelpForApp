@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.user.MicroLetterUserMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.user.MicroLetterUser" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_oppenid" property="userOppenid" jdbcType="VARCHAR" />
+    <result column="user_nickname" property="userNickName" jdbcType="VARCHAR" />
+    <result column="user_portrait" property="userPortrait" jdbcType="VARCHAR" />
+    <result column="feed_back" property="feedBack" jdbcType="VARCHAR" />
+
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_phone, user_oppenid,feed_back
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from micro_letter_user
+    where user_oppenid = #{userOppenid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from micro_letter_user
+    where user_phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from micro_letter_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.MicroLetterUser" >
+    insert into micro_letter_user (user_id, user_phone, user_oppenid
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{userOppenid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.MicroLetterUser" >
+    insert into micro_letter_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dto.userId != null" >
+        user_id,
+      </if>
+      <if test="dto.userPhone != null" >
+        user_phone,
+      </if>
+      <if test="dto.userOppenid != null" >
+        user_oppenid,
+      </if>
+      <if test="dto.userNickName != null" >
+        user_nickname,
+      </if>
+      <if test="dto.userPortrait != null" >
+        user_portrait,
+      </if>
+      <if test="dto.feedBack != null" >
+        feed_back,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dto.userId != null" >
+        #{dto.userId,jdbcType=INTEGER},
+      </if>
+      <if test="dto.userPhone != null" >
+        #{dto.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.userOppenid != null" >
+        #{dto.userOppenid,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.userNickName != null" >
+        #{dto.userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.userPortrait != null" >
+        #{dto.userPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.feedBack != null" >
+        #{dto.feedBack,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.MicroLetterUser" >
+    update micro_letter_user
+    <set >
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userOppenid != null" >
+        user_oppenid = #{userOppenid,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null" >
+        user_nickname = #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPortrait != null" >
+        user_portrait = #{userPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="feedBack != null" >
+        feed_back = #{feedBack,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.user.MicroLetterUser" >
+    update micro_letter_user
+    set user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_oppenid = #{userOppenid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

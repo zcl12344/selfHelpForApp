@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.shop.ShopInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.shop.ShopInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="alipay_account" property="alipayAccount" jdbcType="VARCHAR" />
+    <result column="weixinpay_account" property="weixinpayAccount" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_signature" property="shopSignature" jdbcType="VARCHAR" />
+    <result column="shop_location_lat" property="shopLocationLat" jdbcType="DECIMAL" />
+    <result column="shop_location_long" property="shopLocationLong" jdbcType="DECIMAL" />
+    <result column="shop_location_detail" property="shopLocationDetail" jdbcType="VARCHAR" />
+    <result column="is_check" property="isCheck" jdbcType="BIT" />
+    <result column="shop_owner_id" property="shopOwnerId" jdbcType="INTEGER" />
+    <result column="business_license_img" property="businessLicenseImg" jdbcType="VARCHAR" />
+    <result column="id_card_img" property="idCardImg" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="shop_img" property="shopImg" jdbcType="VARCHAR" />
+    <result column="shop_brief" property="shopBrief" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, real_name, id_card, bank_account, alipay_account, weixinpay_account, shop_name, 
+    shop_signature, shop_location_lat, shop_location_long, shop_location_detail, is_check, 
+    shop_owner_id, business_license_img, id_card_img, balance, shop_img,shop_brief
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shopinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shopinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.shop.ShopInfo" >
+    insert into shopinfo (id, real_name, id_card, 
+      bank_account, alipay_account, weixinpay_account, 
+      shop_name, shop_signature, shop_location_lat, 
+      shop_location_long, shop_location_detail, is_check, 
+      shop_owner_id, business_license_img, id_card_img, 
+      balance)
+    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{bankAccount,jdbcType=VARCHAR}, #{alipayAccount,jdbcType=VARCHAR}, #{weixinpayAccount,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR}, #{shopSignature,jdbcType=VARCHAR}, #{shopLocationLat,jdbcType=DECIMAL}, 
+      #{shopLocationLong,jdbcType=DECIMAL}, #{shopLocationDetail,jdbcType=VARCHAR}, #{isCheck,jdbcType=BIT}, 
+      #{shopOwnerId,jdbcType=INTEGER}, #{businessLicenseImg,jdbcType=VARCHAR}, #{idCardImg,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.shop.ShopInfo" >
+    insert into shopinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account,
+      </if>
+      <if test="weixinpayAccount != null" >
+        weixinpay_account,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopSignature != null" >
+        shop_signature,
+      </if>
+      <if test="shopLocationLat != null" >
+        shop_location_lat,
+      </if>
+      <if test="shopLocationLong != null" >
+        shop_location_long,
+      </if>
+      <if test="shopLocationDetail != null" >
+        shop_location_detail,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="shopOwnerId != null" >
+        shop_owner_id,
+      </if>
+      <if test="businessLicenseImg != null" >
+        business_license_img,
+      </if>
+      <if test="idCardImg != null" >
+        id_card_img,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayAccount != null" >
+        #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinpayAccount != null" >
+        #{weixinpayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopSignature != null" >
+        #{shopSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLocationLat != null" >
+        #{shopLocationLat,jdbcType=DECIMAL},
+      </if>
+      <if test="shopLocationLong != null" >
+        #{shopLocationLong,jdbcType=DECIMAL},
+      </if>
+      <if test="shopLocationDetail != null" >
+        #{shopLocationDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=BIT},
+      </if>
+      <if test="shopOwnerId != null" >
+        #{shopOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="businessLicenseImg != null" >
+        #{businessLicenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg != null" >
+        #{idCardImg,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.shop.ShopInfo" >
+    update shopinfo
+    <set >
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinpayAccount != null" >
+        weixinpay_account = #{weixinpayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopSignature != null" >
+        shop_signature = #{shopSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLocationLat != null" >
+        shop_location_lat = #{shopLocationLat,jdbcType=DECIMAL},
+      </if>
+      <if test="shopLocationLong != null" >
+        shop_location_long = #{shopLocationLong,jdbcType=DECIMAL},
+      </if>
+      <if test="shopLocationDetail != null" >
+        shop_location_detail = #{shopLocationDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=BIT},
+      </if>
+      <if test="shopOwnerId != null" >
+        shop_owner_id = #{shopOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="businessLicenseImg != null" >
+        business_license_img = #{businessLicenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImg != null" >
+        id_card_img = #{idCardImg,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.shop.ShopInfo" >
+    update shopinfo
+    set real_name = #{realName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      weixinpay_account = #{weixinpayAccount,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_signature = #{shopSignature,jdbcType=VARCHAR},
+      shop_location_lat = #{shopLocationLat,jdbcType=DECIMAL},
+      shop_location_long = #{shopLocationLong,jdbcType=DECIMAL},
+      shop_location_detail = #{shopLocationDetail,jdbcType=VARCHAR},
+      is_check = #{isCheck,jdbcType=BIT},
+      shop_owner_id = #{shopOwnerId,jdbcType=INTEGER},
+      business_license_img = #{businessLicenseImg,jdbcType=VARCHAR},
+      id_card_img = #{idCardImg,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 分页面查询 -->
+  <select id="queryShopInfoList" resultMap="BaseResultMap" parameterType="com.springboot.tongyuyan.selfhelp.winter.requstDto.shop.ShopInfoRequest">
+    select
+    <include refid="Base_Column_List" />
+    from shopinfo
+    where 1=1
+    <if test="dto.idCard != null and dto.idCard != null">
+      AND id_card = #{dto.idCard}
+    </if>
+    <if test="dto.shopName != null and dto.shopName != null">
+      AND shop_name like "%"#{dto.shopName}"%"
+    </if>
+    <if test="dto.shopId != null and dto.shopId != null">
+      AND id = #{dto.shopId}
+    </if>
+
+
+    <!--<if test="dto.idCard != null and dto.idCard != null">
+      AND i.create_time between #{dto.accountStartTime} and #{dto.accountEndTime}
+    </if>
+    <if test="dto.accountStartTime == null and dto.accountEndTime != null">
+      AND i.create_time > #{dto.accountEndTime}
+    </if>
+    <if test="dto.accountStartTime != null and dto.accountEndTime == null">
+      AND i.create_time between  now() and #{dto.accountStartTime}
+    </if>-->
+-- ORDER BY create_time DESC
+
+  </select>
+
+
+  <!--单条数据查询-->
+  <select id="selectShopInfoDate" resultMap="BaseResultMap" parameterType="com.springboot.tongyuyan.selfhelp.winter.requstDto.shop.ShopInfoRequest">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM  shopinfo where 1=1
+    <if test="dto.idCard != null and dto.idCard != ''">
+      AND id_card = #{dto.idCard}
+    </if>
+
+
+  </select>
+
+  <!--手机号查询在哪家买过东西-->
+
+</mapper>

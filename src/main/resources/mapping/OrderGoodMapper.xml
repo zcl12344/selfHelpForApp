@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.tongyuyan.selfhelp.winter.mapper.oder.OrderGoodMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="good_sn" property="goodSn" jdbcType="VARCHAR" />
+    <result column="good_number" property="goodNumber" jdbcType="SMALLINT" />
+    <result column="good_weight" property="goodWeight" jdbcType="DECIMAL" />
+    <result column="good_price" property="goodPrice" jdbcType="DECIMAL" />
+    <result column="good_id" property="goodId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="good_img" property="goodImg" jdbcType="VARCHAR" />
+    <result column="profit" property="profit" jdbcType="DECIMAL" />
+    <result column="good_amount" property="goodAmount" jdbcType="DECIMAL" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="is_returned" property="isReturned" jdbcType="BIT" />
+    <result column="is_returnable" property="isReturnable" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, good_name, good_sn, good_number, good_weight, good_price, good_id, order_id, 
+    good_img, profit, good_amount, integral, is_returned, is_returnable
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_good
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_good
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood" >
+    insert into order_good (id, good_name, good_sn, 
+      good_number, good_weight, good_price, 
+      good_id, order_id, good_img, 
+      profit, good_amount, integral, 
+      is_returned, is_returnable)
+    values (#{id,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{goodSn,jdbcType=VARCHAR},
+      #{goodNumber,jdbcType=SMALLINT}, #{goodWeight,jdbcType=DECIMAL}, #{goodPrice,jdbcType=DECIMAL}, 
+      #{goodId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodImg,jdbcType=VARCHAR},
+      #{profit,jdbcType=DECIMAL}, #{goodAmount,jdbcType=DECIMAL}, #{integral,jdbcType=INTEGER}, 
+      #{isReturned,jdbcType=BIT}, #{isReturnable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood" >
+    insert into order_good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="goodSn != null" >
+        good_sn,
+      </if>
+      <if test="goodNumber != null" >
+        good_number,
+      </if>
+      <if test="goodWeight != null" >
+        good_weight,
+      </if>
+      <if test="goodPrice != null" >
+        good_price,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="goodImg != null" >
+        good_img,
+      </if>
+      <if test="profit != null" >
+        profit,
+      </if>
+      <if test="goodAmount != null" >
+        good_amount,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="isReturned != null" >
+        is_returned,
+      </if>
+      <if test="isReturnable != null" >
+        is_returnable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSn != null" >
+        #{goodSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        #{goodNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="goodWeight != null" >
+        #{goodWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodPrice != null" >
+        #{goodPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodImg != null" >
+        #{goodImg,jdbcType=VARCHAR},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="goodAmount != null" >
+        #{goodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="isReturned != null" >
+        #{isReturned,jdbcType=BIT},
+      </if>
+      <if test="isReturnable != null" >
+        #{isReturnable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood" >
+    update order_good
+    <set >
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSn != null" >
+        good_sn = #{goodSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        good_number = #{goodNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="goodWeight != null" >
+        good_weight = #{goodWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodPrice != null" >
+        good_price = #{goodPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodImg != null" >
+        good_img = #{goodImg,jdbcType=VARCHAR},
+      </if>
+      <if test="profit != null" >
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="goodAmount != null" >
+        good_amount = #{goodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="isReturned != null" >
+        is_returned = #{isReturned,jdbcType=BIT},
+      </if>
+      <if test="isReturnable != null" >
+        is_returnable = #{isReturnable,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.tongyuyan.selfhelp.winter.model.order.OrderGood" >
+    update order_good
+    set good_name = #{goodName,jdbcType=VARCHAR},
+      good_sn = #{goodSn,jdbcType=VARCHAR},
+      good_number = #{goodNumber,jdbcType=SMALLINT},
+      good_weight = #{goodWeight,jdbcType=DECIMAL},
+      good_price = #{goodPrice,jdbcType=DECIMAL},
+      good_id = #{goodId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      good_img = #{goodImg,jdbcType=VARCHAR},
+      profit = #{profit,jdbcType=DECIMAL},
+      good_amount = #{goodAmount,jdbcType=DECIMAL},
+      integral = #{integral,jdbcType=INTEGER},
+      is_returned = #{isReturned,jdbcType=BIT},
+      is_returnable = #{isReturnable,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!--批量插入-->
+
+  <insert id="insertByList" useGeneratedKeys="true" keyProperty="id"
+          parameterType="java.util.ArrayList">
+
+    insert into order_good(id, good_name, good_sn,
+    good_number, good_weight, good_price,
+    good_id, order_id, good_img,
+    profit, good_amount, integral,
+    is_returned, is_returnable)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.goodName,jdbcType=VARCHAR}, #{item.goodSn,jdbcType=VARCHAR},
+      #{item.goodNumber,jdbcType=SMALLINT}, #{item.goodWeight,jdbcType=DECIMAL}, #{item.goodPrice,jdbcType=DECIMAL},
+      #{item.goodId,jdbcType=INTEGER}, #{item.orderId,jdbcType=INTEGER}, #{item.goodImg,jdbcType=VARCHAR},
+      #{item.profit,jdbcType=DECIMAL}, #{item.goodAmount,jdbcType=DECIMAL}, #{item.integral,jdbcType=INTEGER},
+      #{item.isReturned,jdbcType=BIT}, #{item.isReturnable,jdbcType=BIT})
+    </foreach>
+  </insert>
+
+  <select id="queryList" parameterType="com.springboot.tongyuyan.selfhelp.winter.requstDto.order.OrderGoodsRequest" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM order_good WHERE order_id=#{orderId}
+  </select>
+
+
+
+</mapper>
